@@ -1,16 +1,15 @@
-import component.VideoList
 import component.videoList
 import kotlinx.css.*
 import model.Video
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import react.dom.*
+import react.*
+import react.dom.div
+import react.dom.h1
+import react.dom.h3
+import react.dom.img
 import styled.css
 import styled.styledDiv
 
-class App: RComponent<RProps, RState>() {
+class App : RComponent<RProps, AppState>() {
     override fun RBuilder.render() {
         val unwatchedVideos = listOf(
             Video(1, "Building and breaking things", "John Doe", "https://youtu.be/PsaFVLr8t4E"),
@@ -32,12 +31,24 @@ class App: RComponent<RProps, RState>() {
             }
             videoList {
                 videos = unwatchedVideos
+                selectedVideo = state.currentVideo
+                onSelectVideo = { video ->
+                    setState {
+                        currentVideo = video
+                    }
+                }
             }
             h3 {
                 +"Videos watched"
             }
             videoList {
                 videos = watchedVideos
+                selectedVideo = state.currentVideo
+                onSelectVideo = { video ->
+                    setState {
+                        currentVideo = video
+                    }
+                }
             }
         }
 
@@ -58,3 +69,8 @@ class App: RComponent<RProps, RState>() {
         }
     }
 }
+
+external interface AppState : RState {
+    var currentVideo: Video?
+}
+
