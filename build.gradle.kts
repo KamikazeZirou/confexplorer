@@ -17,13 +17,17 @@ dependencies {
     // React
     implementation(Deps.Kotlin.React)
     implementation(Deps.Kotlin.ReactDom)
-    implementation(npm(Deps.Npm.React, Versions.npmReact))
-    implementation(npm(Deps.Npm.ReactDom, Versions.npmReact))
+    implementation(npm(Npm.React, Versions.npmReact))
+    implementation(npm(Npm.ReactDom, Versions.npmReact))
 
     //Kotlin Styled
     implementation(Deps.Kotlin.Styled)
-    implementation(npm(Deps.Npm.StyledComponents))
-    implementation(npm(Deps.Npm.InlineStylePrefixer))
+    implementation(npm(Npm.StyledComponents))
+    implementation(npm(Npm.InlineStylePrefixer))
+
+    // Youtube
+    implementation(npm(Npm.ReactPlayer))
+    implementation(npm(Npm.ReactShare))
 }
 
 kotlin.target.browser { }

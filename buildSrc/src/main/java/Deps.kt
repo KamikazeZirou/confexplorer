@@ -9,14 +9,16 @@ object Deps {
         const val ReactDom = "org.jetbrains:kotlin-react-dom:16.13.1-pre.105-kotlin-${Versions.kotlin}"
         const val Styled = "org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-${Versions.kotlin}"
     }
-
-    object Npm {
-        const val React = "react"
-        const val ReactDom = "react-dom"
-        const val StyledComponents = "styled-components"
-        const val InlineStylePrefixer = "inline-style-prefixer"
-    }
 }
 
 object TestDeps {
+}
+
+object Npm {
+    const val React = "react"
+    const val ReactDom = "react-dom"
+    const val StyledComponents = "styled-components"
+    const val InlineStylePrefixer = "inline-style-prefixer"
+    const val ReactPlayer = "react-player"
+    const val ReactShare = "react-share"
 }
