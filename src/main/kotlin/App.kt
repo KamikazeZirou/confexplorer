@@ -1,15 +1,11 @@
 import component.videoList
 import component.videoPlayer
 import kotlinx.coroutines.*
-import kotlinx.css.*
 import model.Video
 import react.*
 import react.dom.div
 import react.dom.h1
 import react.dom.h3
-import react.dom.img
-import styled.css
-import styled.styledDiv
 import kotlin.browser.window
 
 class App : RComponent<RProps, AppState>() {
@@ -79,14 +75,14 @@ class App : RComponent<RProps, AppState>() {
         }
     }
 
-    suspend fun fetchVideos(): List<Video> = coroutineScope {
+    private suspend fun fetchVideos(): List<Video> = coroutineScope {
         (1..25).map { id ->
             async {
                 fetchVideo(id)
             }
         }.awaitAll()
     }
-    suspend fun fetchVideo(id: Int): Video =
+    private suspend fun fetchVideo(id: Int): Video =
         window.fetch("https://my-json-server.typicode.com/kotlin-hands-on/kotlinconf-json/videos/$id")
             .await()
             .json()
