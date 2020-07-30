@@ -1,5 +1,6 @@
 import component.videoList
 import component.videoPlayer
+import kotlinx.coroutines.*
 import kotlinx.css.*
 import model.Video
 import react.*
@@ -9,18 +10,20 @@ import react.dom.h3
 import react.dom.img
 import styled.css
 import styled.styledDiv
+import kotlin.browser.window
 
 class App : RComponent<RProps, AppState>() {
     override fun AppState.init() {
-        unwatchedVideos = listOf(
-            Video(1, "Building and breaking things", "John Doe", "https://youtu.be/PsaFVLr8t4E"),
-            Video(2, "The development process", "Jane Smith", "https://youtu.be/PsaFVLr8t4E"),
-            Video(3, "The Web 7.0", "Matt Miller", "https://youtu.be/PsaFVLr8t4E")
-        )
+        unwatchedVideos = listOf()
+        watchedVideos = listOf()
 
-        watchedVideos = listOf(
-            Video(4, "Mouseless development", "Tom Jerry", "https://youtu.be/PsaFVLr8t4E")
-        )
+        val mainScope = MainScope()
+        mainScope.launch {
+            val videos = fetchVideos()
+            setState {
+                unwatchedVideos = videos
+            }
+        }
     }
 
     override fun RBuilder.render() {
@@ -75,6 +78,20 @@ class App : RComponent<RProps, AppState>() {
             }
         }
     }
+
+    suspend fun fetchVideos(): List<Video> = coroutineScope {
+        (1..25).map { id ->
+            async {
+                fetchVideo(id)
+            }
+        }.awaitAll()
+    }
+    suspend fun fetchVideo(id: Int): Video =
+        window.fetch("https://my-json-server.typicode.com/kotlin-hands-on/kotlinconf-json/videos/$id")
+            .await()
+            .json()
+            .await()
+            .unsafeCast<Video>()
 }
 
 external interface AppState : RState {

@@ -28,6 +28,9 @@ dependencies {
     // Youtube
     implementation(npm(Npm.ReactPlayer))
     implementation(npm(Npm.ReactShare))
+
+    // Coroutines
+    implementation(Deps.Kotlin.Coroutines)
 }
 
 kotlin.target.browser { }

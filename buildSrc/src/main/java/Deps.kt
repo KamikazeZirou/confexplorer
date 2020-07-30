@@ -8,6 +8,7 @@ object Deps {
         const val React = "org.jetbrains:kotlin-react:16.13.1-pre.105-kotlin-${Versions.kotlin}"
         const val ReactDom = "org.jetbrains:kotlin-react-dom:16.13.1-pre.105-kotlin-${Versions.kotlin}"
         const val Styled = "org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-${Versions.kotlin}"
+        const val Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5"
     }
 }
 
