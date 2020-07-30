@@ -1,4 +1,6 @@
+import component.VideoListProps
 import component.videoList
+import component.videoListFC
 import component.videoPlayer
 import kotlinx.coroutines.*
 import model.Video
@@ -43,7 +45,7 @@ class App : RComponent<RProps, AppState>() {
             h3 {
                 +"Videos watched"
             }
-            videoList {
+            videoListFC {
                 videos = state.watchedVideos
                 selectedVideo = state.currentVideo
                 onSelectVideo = { video ->
